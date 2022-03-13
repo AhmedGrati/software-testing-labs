@@ -17,6 +17,8 @@ etc...)
 
 ## Environment Variables
 
+***Environment Variables are not required if you want only to run unit tests.***
+
 To run this project, create `.env` file, copy the `.example.env` file into your `.env` file, and change the following value of the following variable to the appropriate one.
 
 `JWT_VERIFICATION_TOKEN_SECRET`
@@ -27,13 +29,28 @@ To run this project, create `.env` file, copy the `.example.env` file into your 
 
 `MAIL_PASSWORD`
 
+## Run Unit Tests
+
+For the moment, unit tests are made only for `src/chronic-disease/chronic-disease.service.ts`, and they are located in the file `src/chronic-disease/chronic-disease.service.spec.ts`
+
+To run unit tests, run the following command:
+
+```bash
+npm run test:watch
+```
+
+Then enter `p` to enter the following pattern `chronic-disease`. It should give you the followin result:<br><br>
+<img src="./readme_assets/unit-tests.png">
+
 ## Run Locally
 
 1- Make sure you have docker and docker-compose installed in your system by running these commands:
+
 ```bash
 docker --version
 docker-compose --version
 ```
+
 2- Clone the project
 
 ```bash
@@ -51,6 +68,7 @@ docker-compose --version
 ```bash
   docker-compose up
 ```
+
 ## License
 
-The source code for the site is licensed under the [MIT](https://choosealicense.com/licenses/mit/) license, which you can find in the LICENSE.txt file. 
+The source code for the site is licensed under the [MIT](https://choosealicense.com/licenses/mit/) license, which you can find in the LICENSE.txt file.
