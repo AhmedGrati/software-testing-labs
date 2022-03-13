@@ -5,7 +5,6 @@ import { ChronicDiseaseService } from './chronic-disease.service';
 describe('ChronicDiseaseController Test Suite', () => {
   let controller: ChronicDiseaseController;
   const mockChronicDiseaseService = {};
-
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [ChronicDiseaseController],
