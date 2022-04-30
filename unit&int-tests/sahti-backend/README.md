@@ -47,10 +47,13 @@ You should have docker installed on your host machine to run integration tests, 
 
 **Note that you should have ports 5431 and 6379 available for databases on your host machine.**
 ### 2- Running Tests
-For the moment, integration tests are made only for `chronic-disease` module, and they are located in the file `test/chronic-disease.e2e-spec.ts`.
 
 Before running the integration tests, I will run 2 docker container without any volumes attached, so that data would not persisted between tests and for every new running tests it will have a new clean database.
+After running the integration tests, The docker containers will be removed.
 
+Form more details, You could check the `pretest:e2e` and `posttest:e2e` in the `package.json` file.
+
+For the moment, integration tests are made only for `chronic-disease` module, and they are located in the file `test/chronic-disease.e2e-spec.ts`.
 To run integration tests, run the following command:
 
 ```bash
