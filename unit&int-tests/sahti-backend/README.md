@@ -41,6 +41,26 @@ npm run test
 You should see the following result:
 <img src="./readme_assets/unit-tests.png">
 
+## Run Integration Tests
+### 1- Prerequisite
+You should have docker installed on your host machine to run integration tests, because at the moment of testing, I will run a clean postgres and redis databases using docker-compose.
+
+**Note that you should have ports 5431 and 6379 available for databases on your host machine.**
+### 2- Running Tests
+For the moment, integration tests are made only for `chronic-disease` module, and they are located in the file `test/chronic-disease.e2e-spec.ts`.
+
+Before running the integration tests, I will run 2 docker container without any volumes attached, so that data would not persisted between tests and for every new running tests it will have a new clean database.
+
+To run integration tests, run the following command:
+
+```bash
+npm run test:e2e
+```
+You should see the following result:
+<img src="./readme_assets/int-tests.png">
+
+**Note that you would probably encounter some error logs before seeing the result of tests, It is okay because it does not have an influence on the tests process. These are internal errors of Jest, not related to the actual tests.**
+
 ## Run Locally
 
 1- Make sure you have docker and docker-compose installed in your system by running these commands:
