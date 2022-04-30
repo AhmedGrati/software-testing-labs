@@ -8,7 +8,6 @@ import { DoctorModule } from './doctor/doctor.module';
 import { TechnicianModule } from './technician/technician.module';
 import { PharmacistModule } from './pharmacist/pharmacist.module';
 import { PharmacyModule } from './pharmacy/pharmacy.module';
-import { FakerModule } from './faker/faker.module';
 import { ConfigModule } from '@nestjs/config';
 import { MedicamentModule } from './medicament/medicament.module';
 import { TranscriptionModule } from './transcription/transcription.module';
@@ -36,7 +35,6 @@ import { FileModule } from './file/file.module';
     TechnicianModule,
     PharmacistModule,
     PharmacyModule,
-    FakerModule,
     MedicamentModule,
     TranscriptionModule,
     AuthModule,

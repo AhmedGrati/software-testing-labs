@@ -1,7 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import { RoleEnum } from './patient/entities/role.enum';
-import { Auth } from './shared/decorators/auth.decorator';
 
 @Controller()
 export class AppController {
