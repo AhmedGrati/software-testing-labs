@@ -3,6 +3,7 @@ variables:
 
 run_build:
   image: node:latest
+  stage: integration
   environment:
     name: build
   tags:
@@ -15,7 +16,8 @@ run_build:
     - "npm run build"
 
 run_test:
-  image:  node:latest
+  stage: integration
+  image:  docker:latest
   environment:
     name: test
   tags:
@@ -23,17 +25,20 @@ run_test:
   before_script:
   - "npm --version"
   script:
+    - "apt install nodejs"
+    - "apt install npm"
     - "cd ./unit-int-tests/sahti-backend"
-    - "npm i --legacy-peer-deps "
+    - "npm i --legacy-peer-deps"
     - "npm run test"
     - "npm run test:e2e"
 
 build_push_image:
+  stage: delivery
   image:  docker:latest
   tags:
     - "cd"
   script:
-    - docker build -t ${DOCKER_HUB_LOGIN}/sahti -f ./unit\&int-tests/sahti-backend/Dockerfile
+    - docker build -t ${DOCKER_HUB_LOGIN}/sahti -f ./unit-int-tests/sahti-backend/Dockerfile
     - "docker login -u ${DOCKER_HUB_LOGIN} -p ${DOCKER_HUB_PASSWORD}"
     - "docker push ${DOCKER_HUB_LOGIN}/sahti"
 
