@@ -24,6 +24,7 @@ run_test:
     - "ci"
   script:
     - "apk add --update nodejs npm"
+    - "apk add --no-cache docker-compose"
     - "cd ./unit-int-tests/sahti-backend"
     - "npm i --legacy-peer-deps"
     - "npm run test"
@@ -52,6 +53,7 @@ deploy:
   - eval $(ssh-agent -s)
   - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
+    - apk add --no-cache docker-compose
     - ssh-add <(echo "$PRIVATE_KEY" | base64 -d)
     - rm -rf .git
     - ssh -o StrictHostKeyChecking=no ubuntu@"$SERVER" "rm -rf ~/${PROJECT_NAME}; mkdir ~/${PROJECT_NAME}; git init; git clone -b ${BRANCH} ${REPO}; cd ${PROJECT_NAME}/unit-int-tests/sahti-backend; echo ${ENV_FILE} > .env; docker-compose up"
