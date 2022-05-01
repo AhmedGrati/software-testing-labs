@@ -17,9 +17,11 @@ run_build:
 
 run_test:
   stage: test
-  image:  docker:dind
+  image: docker:dind
   environment:
     name: test
+  before_script:
+    - "docker --version"
   tags:
     - "ci"
   script:
