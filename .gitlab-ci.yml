@@ -23,7 +23,7 @@ run_test:
   before_script:
   - "npm --version"
   script:
-    - "cd ./unit&int-tests/sahti-backend"
+    - "cd ./unit\\&int-tests/sahti-backend"
     - "npm i"
     - "npm run test"
     - "npm run test:e2e"
