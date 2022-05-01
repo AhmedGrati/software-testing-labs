@@ -33,8 +33,6 @@ run_test:
     - "cd ./unit-int-tests/sahti-backend"
     - "npm i --legacy-peer-deps"
     - "npm run test"
-    - "system"
-    - "chmod 666 /var/run/docker.sock"
     - "npm run test:e2e"
 
 build_push_image:
