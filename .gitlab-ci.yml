@@ -23,8 +23,7 @@ run_test:
   tags:
     - "ci"
   script:
-    - "apt install nodejs"
-    - "apt install npm"
+    - "apk add --update nodejs npm"
     - "cd ./unit-int-tests/sahti-backend"
     - "npm i --legacy-peer-deps"
     - "npm run test"
