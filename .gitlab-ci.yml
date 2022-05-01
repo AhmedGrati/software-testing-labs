@@ -22,8 +22,6 @@ run_test:
     name: test
   tags:
     - "ci"
-  before_script:
-  - "npm --version"
   script:
     - "apt install nodejs"
     - "apt install npm"
