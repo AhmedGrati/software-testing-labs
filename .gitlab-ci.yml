@@ -29,7 +29,6 @@ run_test:
     - "ci"
   script:
     - "apk add --update nodejs npm"
-    - "apk add --no-cache docker-compose"
     - "cd ./unit-int-tests/sahti-backend"
     - "npm i --legacy-peer-deps"
     - "npm run test"
