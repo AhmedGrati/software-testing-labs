@@ -17,7 +17,7 @@ run_build:
 
 run_test:
   stage: test
-  image:  docker:latest
+  image:  docker:dind
   environment:
     name: test
   tags:
@@ -41,7 +41,7 @@ build_push_image:
     - "docker push ${DOCKER_HUB_LOGIN}/sahti"
 
 deploy:
-  image: docker:latest
+  image: docker:dind
   tags:
     - "cd"
   stage: deploy
