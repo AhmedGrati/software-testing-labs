@@ -3,7 +3,7 @@ variables:
 
 run_build:
   image: node:latest
-  stage: integration
+  stage: build
   environment:
     name: build
   tags:
@@ -16,7 +16,7 @@ run_build:
     - "npm run build"
 
 run_test:
-  stage: integration
+  stage: test
   image:  docker:latest
   environment:
     name: test
@@ -33,7 +33,7 @@ run_test:
     - "npm run test:e2e"
 
 build_push_image:
-  stage: delivery
+  stage: deploy
   image:  docker:latest
   tags:
     - "cd"
