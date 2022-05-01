@@ -1,0 +1,59 @@
+variables:
+  REPO: https://${USERNAME}:${PASSWORD}@gitlab.com/AhmedGrati/devops-lab
+
+run_build:
+  image: node:latest
+  environment:
+    name: build
+  tags:
+    - "ci"
+  before_script:
+  - "npm --version"
+  script:
+    - "cd ./unit&int-tests/sahti-backend"
+    - "npm i"
+    - "npm run build"
+
+run_test:
+  image:  node:latest
+  environment:
+    name: test
+  tags:
+    - "ci"
+  before_script:
+  - "npm --version"
+  script:
+    - "cd ./unit&int-tests/sahti-backend"
+    - "npm i"
+    - "npm run test"
+    - "npm run test:e2e"
+
+build_push_image:
+  image:  docker:latest
+  tags:
+    - "cd"
+  script:
+    - docker build -t ${DOCKER_HUB_LOGIN}/sahti -f ./unit\&int-tests/sahti-backend/Dockerfile
+    - "docker login -u ${DOCKER_HUB_LOGIN} -p ${DOCKER_HUB_PASSWORD}"
+    - "docker push ${DOCKER_HUB_LOGIN}/sahti"
+
+deploy:
+  image: docker:latest
+  tags:
+    - "cd"
+  stage: deploy
+  environment: 
+    name: Deploy
+  before_script:
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  - mkdir -p ~/.ssh
+  - eval $(ssh-agent -s)
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - ssh-add <(echo "$PRIVATE_KEY" | base64 -d)
+    - rm -rf .git
+    - ssh -o StrictHostKeyChecking=no ubuntu@"$SERVER" "rm -rf ~/${PROJECT_NAME}; mkdir ~/${PROJECT_NAME}; git init; git clone -b ${BRANCH} ${REPO}; cd ${PROJECT_NAME}/unit\&int-tests/sahti-backend; echo ${ENV_FILE} > .env; docker-compose up"
+  only:
+    - branches
+  except:
+    - master
