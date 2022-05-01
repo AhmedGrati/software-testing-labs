@@ -11,7 +11,7 @@ run_build:
   - "npm --version"
   script:
     - "cd ./unit-int-tests/sahti-backend"
-    - "npm i"
+    - "npm i --legacy-peer-deps "
     - "npm run build"
 
 run_test:
@@ -24,7 +24,7 @@ run_test:
   - "npm --version"
   script:
     - "cd ./unit-int-tests/sahti-backend"
-    - "npm i"
+    - "npm i --legacy-peer-deps "
     - "npm run test"
     - "npm run test:e2e"
 
