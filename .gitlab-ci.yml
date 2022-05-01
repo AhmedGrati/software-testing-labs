@@ -1,3 +1,7 @@
+image: creatiwww/docker-compose:latest
+
+services:
+  - docker:dind
 variables:
   REPO: https://${USERNAME}:${PASSWORD}@gitlab.com/AhmedGrati/devops-lab
 
@@ -17,7 +21,6 @@ run_build:
 
 run_test:
   stage: test
-  image: docker:dind
   environment:
     name: test
   before_script:
@@ -30,12 +33,12 @@ run_test:
     - "cd ./unit-int-tests/sahti-backend"
     - "npm i --legacy-peer-deps"
     - "npm run test"
+    - "system"
     - "chmod 666 /var/run/docker.sock"
     - "npm run test:e2e"
 
 build_push_image:
   stage: deploy
-  image:  docker:latest
   tags:
     - "cd"
   script:
@@ -44,7 +47,6 @@ build_push_image:
     - "docker push ${DOCKER_HUB_LOGIN}/sahti"
 
 deploy:
-  image: docker:dind
   tags:
     - "cd"
   stage: deploy
