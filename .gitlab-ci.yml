@@ -49,22 +49,22 @@ run_test:
     - "npm run test"
     - "npm run test:e2e"
 
-# build_push_image:
-#   stage: release
-#   tags:
-#     - "cd"
-#   script:
-#     - "cd unit-int-tests/sahti-backend"
-#     - "docker build -t ${DOCKER_HUB_LOGIN}/sahti --target=production ."
-#     - "docker login -u ${DOCKER_HUB_LOGIN} -p ${DOCKER_HUB_PASSWORD}"
-#     - "docker push ${DOCKER_HUB_LOGIN}/sahti"
+build_push_image:
+  stage: release
+  tags:
+    - "cd"
+  script:
+    - "cd unit-int-tests/sahti-backend"
+    - "docker build -t ${DOCKER_HUB_LOGIN}/sahti --target=production ."
+    - "docker login -u ${DOCKER_HUB_LOGIN} -p ${DOCKER_HUB_PASSWORD}"
+    - "docker push ${DOCKER_HUB_LOGIN}/sahti"
 
 deploy_containers:
   stage: deploy
   tags:
     - "cd"
   before_script:
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - 'which ssh-agent || ( apt-get update -y && apk add --no-cache openssh )'
     - mkdir -p ~/.ssh
     - eval $(ssh-agent -s)
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
