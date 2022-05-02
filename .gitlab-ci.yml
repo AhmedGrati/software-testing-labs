@@ -44,12 +44,12 @@ run_test:
     - "npm run test:e2e"
 
 build_push_image:
-  stage: deploy
+  stage: release
   tags:
     - "cd"
   script:
     - "cd unit-int-tests/sahti-backend"
-    - "docker build -t ${DOCKER_HUB_LOGIN}/sahti ."
+    - "docker build -t ${DOCKER_HUB_LOGIN}/sahti --target=production ."
     - "docker login -u ${DOCKER_HUB_LOGIN} -p ${DOCKER_HUB_PASSWORD}"
     - "docker push ${DOCKER_HUB_LOGIN}/sahti"
 
