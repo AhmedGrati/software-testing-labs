@@ -18,7 +18,7 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "pretest:e2e": "docker-compose -f docker-compose.test.yaml --env-file .test.env up -d && docker container ls && sleep 5",
+    "pretest:e2e": "docker-compose -f docker-compose.test.yaml --env-file .test.env up -d && docker container ls && && netstat -tnlp && sleep 5",
     "test:e2e": "dotenv -e .test.env -- jest --config ./jest-e2e.json || :",
     "posttest:e2e": "docker-compose -f docker-compose.test.yaml --env-file .test.env down",
     "precommit": "lint-staged"
