@@ -7,6 +7,12 @@ services:
     command:
       - "--tls=false"
 
+stages:
+  - "build"
+  - "test"
+  - "release"
+  - "deploy"
+
 variables:
   REPO: https://${USERNAME}:${PASSWORD}@gitlab.com/AhmedGrati/devops-lab
   DOCKER_DRIVER: overlay2
