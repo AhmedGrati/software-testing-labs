@@ -1,4 +1,4 @@
-image: creatiwww/docker-compose:latest
+image: docker/compose:latest
 
 services:
   - docker:dind
@@ -33,7 +33,7 @@ run_test:
     - "cd ./unit-int-tests/sahti-backend"
     - "npm i --legacy-peer-deps"
     - "npm run test"
-    - "usermod -aG docker $USER"
+    # - "usermod -aG docker $USER"
     - "npm run test:e2e"
 
 build_push_image:
