@@ -1,9 +1,11 @@
 image: docker/compose:latest
 
+
 services:
   - docker:dind
 variables:
   REPO: https://${USERNAME}:${PASSWORD}@gitlab.com/AhmedGrati/devops-lab
+  DOCKER_HOST: tcp://docker:2375
 
 run_build:
   image: node:latest
