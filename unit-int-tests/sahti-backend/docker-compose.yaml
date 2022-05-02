@@ -3,7 +3,7 @@ version: '3.7'
 services:
   sahti-backend:
     container_name: sahti-backend
-    image: sahtiteam/sahti-backend:1.0.0
+    image: ahmedgrati/sahti-backend:latest
     ports:
       - ${PORT}:${PORT}
     env_file:
