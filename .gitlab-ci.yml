@@ -5,7 +5,7 @@ services:
   - docker:19-dind
 variables:
   REPO: https://${USERNAME}:${PASSWORD}@gitlab.com/AhmedGrati/devops-lab
-  DOCKER_HOST: tcp://localhost:2375
+  # DOCKER_HOST: tcp://localhost:2375
 
 run_build:
   image: node:latest
