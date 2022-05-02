@@ -41,6 +41,7 @@ class DatabaseConfigService {
       // logging: true,
       synchronize: true,
       keepConnectionAlive: true,
+      connectTimeoutMS: 20000
     };
   }
 }

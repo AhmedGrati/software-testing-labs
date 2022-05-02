@@ -14,5 +14,5 @@ services:
     env_file:
       - .test.env
     ports:
-      - ${DB_PORT}:${DB_PORT}
+      - 5431:5432
     # command: psql -U postgres -c 'set enable_parallel_hash=off;'
