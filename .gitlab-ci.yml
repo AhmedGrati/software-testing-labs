@@ -41,7 +41,6 @@ run_test:
     - "cd ./unit-int-tests/sahti-backend"
     - "npm i --legacy-peer-deps"
     - "npm run test"
-    # - "usermod -aG docker $USER"
     - "npm run test:e2e"
 
 build_push_image:
@@ -49,16 +48,15 @@ build_push_image:
   tags:
     - "cd"
   script:
-    - docker build -t ${DOCKER_HUB_LOGIN}/sahti -f ./unit-int-tests/sahti-backend/Dockerfile
+    - "cd unit-int-tests/sahti-backend"
+    - "docker build -t ${DOCKER_HUB_LOGIN}/sahti ."
     - "docker login -u ${DOCKER_HUB_LOGIN} -p ${DOCKER_HUB_PASSWORD}"
     - "docker push ${DOCKER_HUB_LOGIN}/sahti"
 
-deploy:
+deploy_containers:
   tags:
     - "cd"
   stage: deploy
-  environment: 
-    name: Deploy
   before_script:
   - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
   - mkdir -p ~/.ssh
