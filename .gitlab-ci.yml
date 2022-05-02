@@ -64,7 +64,7 @@ deploy_containers:
   tags:
     - "cd"
   before_script:
-    - 'which ssh-agent || ( apt-get update -y && apk add --no-cache openssh )'
+    - 'which ssh-agent || ( apk add --update --no-cache openssh )'
     - mkdir -p ~/.ssh
     - eval $(ssh-agent -s)
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
