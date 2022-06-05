@@ -42,7 +42,7 @@ export class Patient {
   @Column()
   lastName: string;
 
-  @Column({ type: 'date' })
+  @Column({ type: 'date', nullable: true })
   birthday: Date;
 
   @Column({ unique: true })

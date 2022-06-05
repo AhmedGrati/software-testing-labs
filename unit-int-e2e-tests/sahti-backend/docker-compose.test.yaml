@@ -4,13 +4,11 @@ services:
   redis-test:
     container_name: redis-test
     image: 'redis:alpine'
-    network_mode: "host"
     command:
       - redis-server
     ports:
       - ${REDIS_PORT}:${REDIS_PORT}
   postgres-test:
-    network_mode: "host"
     container_name: postgres-test
     image: postgres:12
     env_file:

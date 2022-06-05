@@ -29,6 +29,6 @@ export class MedicalCheckUp extends TimestampEntites {
   )
   transcription: Transcription;
 
-  @Column({type: 'date'})
+  @Column({type: 'date', nullable: true})
   controlDate: Date;
 }
