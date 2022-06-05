@@ -17,7 +17,7 @@ etc...)
 
 ## Environment Variables
 
-***Environment Variables are not required if you want only to run unit tests.***
+**_Environment Variables are not required if you want only to run unit tests._**
 
 To run this project, create `.env` file, copy the `.example.env` file into your `.env` file, and change the following value of the following variable to the appropriate one.
 
@@ -29,7 +29,19 @@ To run this project, create `.env` file, copy the `.example.env` file into your 
 
 `MAIL_PASSWORD`
 
-## Run Unit Tests
+# Testing Part
+
+## Prerequisites
+
+You should have docker installed on your host machine to run integration tests, because at the moment of testing, I will run a clean postgres and redis databases using docker-compose.
+
+**Note that you should have ports 5431 and 6379 available for databases on your host machine.**
+Before running the integration & E2E tests, I will run 2 docker container without any volumes attached, so that data would not persisted between tests and for every new running tests it will have a new clean database.
+After running the integration & E2E tests, The docker containers will be removed.
+
+Form more details, You could check the `pretest`, `posttest`, `pretest:e2e`, `posttest:e2e` in the `package.json` file.
+
+## Run Unit & Integration Tests
 
 For the moment, unit tests are made only for `chronic-disease` module, and they are located in the file `src/chronic-disease/chronic-disease.service.spec.ts`
 
@@ -38,20 +50,11 @@ To run unit tests, run the following command:
 ```bash
 npm run test
 ```
+
 You should see the following result:
-<img src="./readme_assets/unit-tests.png">
+<img src="./readme_assets/unit-int-tests.png">
 
-## Run Integration Tests
-### 1- Prerequisite
-You should have docker installed on your host machine to run integration tests, because at the moment of testing, I will run a clean postgres and redis databases using docker-compose.
-
-**Note that you should have ports 5431 and 6379 available for databases on your host machine.**
-### 2- Running Tests
-
-Before running the integration tests, I will run 2 docker container without any volumes attached, so that data would not persisted between tests and for every new running tests it will have a new clean database.
-After running the integration tests, The docker containers will be removed.
-
-Form more details, You could check the `pretest:e2e` and `posttest:e2e` in the `package.json` file.
+## Run E2E Tests
 
 For the moment, integration tests are made only for `chronic-disease` module, and they are located in the file `test/chronic-disease.e2e-spec.ts`.
 To run integration tests, run the following command:
@@ -59,8 +62,9 @@ To run integration tests, run the following command:
 ```bash
 npm run test:e2e
 ```
+
 You should see the following result:
-<img src="./readme_assets/int-tests.png">
+<img src="./readme_assets/e2e-tests.png">
 
 **Note that you would probably encounter some error logs before seeing the result of tests, It is okay because it does not have an influence on the tests process. These are internal errors of Jest, not related to the actual tests.**
 
