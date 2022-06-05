@@ -44,6 +44,7 @@ Form more details, You could check the `pretest`, `posttest`, `pretest:e2e`, `po
 ## Run Unit & Integration Tests
 
 For the moment, unit tests are made only for `chronic-disease` module, and they are located in the file `src/chronic-disease/chronic-disease.service.spec.ts`
+Integration test file is `src/chronic-disease/chronic-disease-int.service.spec.ts`.
 
 To run unit tests, run the following command:
 
